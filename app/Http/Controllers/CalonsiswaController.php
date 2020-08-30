@@ -10,12 +10,12 @@ class CalonsiswaController extends Controller
     public function index()
     {
         $calonsiswa = Calonsiswa::all();
-        return view('daftar-calon-siswa', ['calonsiswa' => $calonsiswa]);
+        return view('indexcalonsiswa', ['calonsiswa' => $calonsiswa]);
     }
 
     public function create()
     {
-        return view('form-pendaftaran');
+        return view('form-pendaftaran')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');;
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class CalonsiswaController extends Controller
 
         $calonsiswa->save();
 
-        return 'Data Berhasil Disimpan Ke Database';
+        return redirect('/calonsiswa')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
     }
 
     public function show($calonsiswa)
@@ -49,5 +49,11 @@ class CalonsiswaController extends Controller
         // dump($calonsiswa);
         $result = Calonsiswa::find($calonsiswa);
         return view('detail_calon', ['calonsiswa'=>$result]);
+    }
+
+    public function destroy(Calonsiswa $calonsiswa)
+    {
+        Calonsiswa::destroy($calonsiswa->id);
+        return redirect('/siswabaru')->with('status', 'Data Mahasiswa Berhasil Dihapus!');;
     }
 }

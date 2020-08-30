@@ -13,7 +13,17 @@
 <body>
     <div class="container">
         <div class="row">
-            <h2>Data Siswa</h2>
+            <div class="col-md-8">
+                <h2>Data Siswa</h2>
+
+                <a href="/calonsiswa/create" class="btn btn-primary my-2">Tambah Data Siswa</a>
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
         </div>
         <table class="table table-bordered">
             <tr class="thead-dark">

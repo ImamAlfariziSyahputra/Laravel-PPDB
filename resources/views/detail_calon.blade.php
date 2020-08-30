@@ -47,6 +47,13 @@
             <div class="form-group">
                 <label for="nohp" class="font-weight-bold">No HP</label>
                 <span> : {{ $calonsiswa->nohp }} </span>
+            <div class="form-group">
+                <form action="{{ $calonsiswa->id }}" method="POST" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

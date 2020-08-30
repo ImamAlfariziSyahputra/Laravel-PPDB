@@ -24,3 +24,5 @@ Route::get('/siswabaru', 'SiswabaruController@index');
 
 //routing tampil 1 data dengan parameter
 Route::get('/calonsiswa/{calonsiswa}', 'CalonsiswaController@show');
+
+Route::delete('/calonsiswa/{calonsiswa}', 'CalonsiswaController@destroy');
