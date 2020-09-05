@@ -16,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Halaman index
 Route::get('/calonsiswa', 'CalonsiswaController@index')->name('calonsiswa.index');
+// Tambah data
 Route::get('/calonsiswa/create', 'CalonsiswaController@create')->name('calonsiswa.create');
 Route::post('/calonsiswa', 'CalonsiswaController@store')->name('calonsiswa.store');
 
-Route::get('/siswabaru', 'SiswabaruController@index');
+// Route::get('/siswabaru', 'SiswabaruController@index');
 
-//routing tampil 1 data dengan parameter
+
+// Detail
 Route::get('/calonsiswa/{calonsiswa}', 'CalonsiswaController@show');
-
+// Hapus
 Route::delete('/calonsiswa/{calonsiswa}', 'CalonsiswaController@destroy');
+//Edit
+Route::get('/calonsiswa/{calonsiswa}/edit', 'CalonsiswaController@edit');
+Route::patch('/calonsiswa/{calonsiswa}', 'CalonsiswaController@update');

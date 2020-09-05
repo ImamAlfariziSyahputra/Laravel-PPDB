@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 ml-3">
                 <h2>Data Siswa</h2>
 
                 <a href="/calonsiswa/create" class="btn btn-primary my-2">Tambah Data Siswa</a>
@@ -25,34 +25,18 @@
                 @endif
             </div>
         </div>
-        <table class="table table-bordered">
-            <tr class="thead-dark">
-                <th>No</th>
-                <th>Nomor PPDB</th>
-                <th>Calon Siswa</th>
-                <th>Asal Sekolah</th>
-                <th>Pilihan 1</th>
-                <th>Pilihan 2</th>
-                <th>Alamat</th>
-                <th>No HP</th>
-                <th>Aksi</th>
-            </tr>
-            @forelse ($calonsiswa as $cs)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $cs->noppdb }}</td>
-                <td>{{ $cs->nama }}</td>
-                <td>{{ $cs->asal_sekolah }}</td>
-                <td>{{ $cs->pilihan1 }}</td>
-                <td>{{ $cs->pilihan2 }}</td>
-                <td>{{ $cs->alamat }}</td>
-                <td>{{ $cs->nohp }}</td>
-                <td><a href="">Edit</a></td>
-            </tr>
-            @empty
-            
-            @endforelse
-        </table>
+        <div class="col-md-8">
+
+            <ul class="list-group">
+                @forelse ($calonsiswa as $cs)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ $cs->nama }}
+                    <a href="/calonsiswa/{{$cs->id}}" class="badge badge-primary badge-pill">Detail</a>
+                </li>
+                @empty
+                @endforelse
+            </ul>
+        </div>
     </div>
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

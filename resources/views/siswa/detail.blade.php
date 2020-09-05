@@ -48,11 +48,15 @@
                 <label for="nohp" class="font-weight-bold">No HP</label>
                 <span> : {{ $calonsiswa->nohp }} </span>
             <div class="form-group">
-                <form action="{{ $calonsiswa->id }}" method="POST" class="d-inline">
+                <a href="{{$calonsiswa->id}}/edit" class="btn btn-success">Edit</a>
+
+                <form action="/calonsiswa/{{ $calonsiswa->id }}" method="POST" class="d-inline">
                     @method('delete')
                     @csrf
                     <button class="btn btn-danger">Delete</button>
                 </form>
+
+                <a href="/calonsiswa" class="btn btn-primary">Kembali</a>
             </div>
         </div>
     </div>

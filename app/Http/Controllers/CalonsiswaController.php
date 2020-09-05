@@ -10,50 +10,80 @@ class CalonsiswaController extends Controller
     public function index()
     {
         $calonsiswa = Calonsiswa::all();
-        return view('indexcalonsiswa', ['calonsiswa' => $calonsiswa]);
+        return view('siswa/index', ['calonsiswa' => $calonsiswa]);
     }
 
     public function create()
     {
-        return view('form-pendaftaran')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');;
+        return view('siswa/tambah')->with('status', 'Data Siswa Berhasil Ditambahkan!');;
     }
 
     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        $request->validate([
             'noppdb' => 'required|size:10',
             'nama' => 'required|min:3|max:60',
             'asal_sekolah' => 'required',
             'pilihan1' => 'required',
             'pilihan2' => 'required',
             'alamat' => 'required',
-            'nohp' => ''
+            'nohp' => 'required'
         ]);
-        // dump($validateData);
-        $calonsiswa = new Calonsiswa();
-        $calonsiswa->noppdb = $validateData['noppdb'];
-        $calonsiswa->nama = $validateData['nama'];
-        $calonsiswa->asal_sekolah = $validateData['asal_sekolah'];
-        $calonsiswa->pilihan1 = $validateData['pilihan1'];
-        $calonsiswa->pilihan2 = $validateData['pilihan2'];
-        $calonsiswa->alamat = $validateData['alamat'];
-        $calonsiswa->nohp = $validateData['nohp'];
 
-        $calonsiswa->save();
+        // $calonsiswa = new Calonsiswa();
+        // $calonsiswa->noppdb = $validateData['noppdb'];
+        // $calonsiswa->nama = $validateData['nama'];
+        // $calonsiswa->asal_sekolah = $validateData['asal_sekolah'];
+        // $calonsiswa->pilihan1 = $validateData['pilihan1'];
+        // $calonsiswa->pilihan2 = $validateData['pilihan2'];
+        // $calonsiswa->alamat = $validateData['alamat'];
+        // $calonsiswa->nohp = $validateData['nohp'];
 
-        return redirect('/calonsiswa')->with('status', 'Data Mahasiswa Berhasil Ditambahkan!');
+        // $calonsiswa->save();
+
+        Calonsiswa::create($request->all());
+        return redirect('/calonsiswa')->with('status', 'Data Siswa Berhasil Ditambahkan!');
     }
 
-    public function show($calonsiswa)
+    public function show(Calonsiswa $calonsiswa)
     {
         // dump($calonsiswa);
-        $result = Calonsiswa::find($calonsiswa);
-        return view('detail_calon', ['calonsiswa'=>$result]);
+        return view('siswa/detail', ['calonsiswa'=>$calonsiswa]);
     }
 
     public function destroy(Calonsiswa $calonsiswa)
     {
         Calonsiswa::destroy($calonsiswa->id);
-        return redirect('/siswabaru')->with('status', 'Data Mahasiswa Berhasil Dihapus!');;
+        return redirect('/calonsiswa')->with('status', 'Data Siswa Berhasil Dihapus!');
+    }
+
+    public function edit(Calonsiswa $calonsiswa)
+    {
+        return view('siswa/edit', ['calonsiswa' => $calonsiswa]);
+    }
+
+    public function update(Request $request, Calonsiswa $calonsiswa)
+    {
+        $request->validate([
+            'noppdb' => 'required|size:10',
+            'nama' => 'required|min:3|max:60',
+            'asal_sekolah' => 'required',
+            'pilihan1' => 'required',
+            'pilihan2' => 'required',
+            'alamat' => 'required',
+            'nohp' => 'required'
+        ]);
+        
+        Calonsiswa::where('id', $calonsiswa->id)
+                    ->update([
+                        'noppdb' => $request->noppdb,
+                        'nama' => $request->nama,
+                        'asal_sekolah' => $request->asal_sekolah,
+                        'pilihan1' => $request->pilihan1,
+                        'pilihan2' => $request->pilihan2,
+                        'alamat' => $request->alamat,
+                        'nohp' => $request->nohp
+                    ]);
+        return redirect('/calonsiswa')->with('status', 'Data Siswa Berhasil Diubah!');
     }
 }
