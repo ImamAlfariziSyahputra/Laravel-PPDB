@@ -19,15 +19,19 @@ Route::get('/', function () {
 
 // Halaman index
 Route::get('/calonsiswa', 'CalonsiswaController@index')->name('calonsiswa.index');
+
+
+
 // Tambah data
 Route::get('/calonsiswa/create', 'CalonsiswaController@create')->name('calonsiswa.create');
 Route::post('/calonsiswa', 'CalonsiswaController@store')->name('calonsiswa.store');
 
+// Detail
+// Detail harus dibawah tambah
+Route::get('/calonsiswa/{calonsiswa}', 'CalonsiswaController@show');
+
 // Route::get('/siswabaru', 'SiswabaruController@index');
 
-
-// Detail
-Route::get('/calonsiswa/{calonsiswa}', 'CalonsiswaController@show');
 // Hapus
 Route::delete('/calonsiswa/{calonsiswa}', 'CalonsiswaController@destroy');
 //Edit

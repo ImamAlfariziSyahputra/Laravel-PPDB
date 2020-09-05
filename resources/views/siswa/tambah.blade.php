@@ -21,7 +21,7 @@
             <h1>Form Daftar Calon Siswa</h1>
             <h2>SMK Taruna Bhakti Depok</h2>
         
-            <form action="{{ url('/calonsiswa') }}" method="post">
+            <form action="/calonsiswa" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="noppdb">Nomor PPDB</label>

@@ -48,7 +48,7 @@
                 <label for="nohp" class="font-weight-bold">No HP</label>
                 <span> : {{ $calonsiswa->nohp }} </span>
             <div class="form-group">
-                <a href="{{$calonsiswa->id}}/edit" class="btn btn-success">Edit</a>
+                <a href="/calonsiswa/{{$calonsiswa->id}}/edit" class="btn btn-success">Edit</a>
 
                 <form action="/calonsiswa/{{ $calonsiswa->id }}" method="POST" class="d-inline">
                     @method('delete')

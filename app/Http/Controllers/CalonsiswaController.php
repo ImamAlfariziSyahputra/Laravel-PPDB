@@ -15,7 +15,7 @@ class CalonsiswaController extends Controller
 
     public function create()
     {
-        return view('siswa/tambah')->with('status', 'Data Siswa Berhasil Ditambahkan!');;
+        return view('siswa/tambah');
     }
 
     public function store(Request $request)
@@ -73,7 +73,7 @@ class CalonsiswaController extends Controller
             'alamat' => 'required',
             'nohp' => 'required'
         ]);
-        
+
         Calonsiswa::where('id', $calonsiswa->id)
                     ->update([
                         'noppdb' => $request->noppdb,
